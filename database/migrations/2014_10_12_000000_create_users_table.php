@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('gender')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->text('auth_token')->nullable();
+            $table->text('api_token')->nullable();
             $table->string('mobile_token', 255)->nullable();
             $table->string('lang', 10)->nullable();
             $table->string('platform', 20)->nullable();

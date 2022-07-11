@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Helpers\CheckPhone;
 use App\Helpers\ErrorClass;
 use App\Http\Controllers\Controller;
+use App\Models\Status;
+use App\Models\User;
 use App\Models\User\PasswordReset;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * Class ForgotPasswordController
@@ -26,7 +29,6 @@ class ForgotPasswordController extends Controller
     public function generate(Request $request)
     {
         try {
-
             $validator = Validator::make($request->all(), [
                 'phone' => 'required|max:20',
             ]);
@@ -34,19 +36,20 @@ class ForgotPasswordController extends Controller
                 return response()->json(['error'=>$validator->errors()], 422);
             }
 
-            $user = User::where('phone', \request('phone'))->first();
+            $user = User::query()
+                ->where('phone', (new CheckPhone(\request('phone')))->formattedPhone())
+                ->first();
             if(!empty($user))
             {
-                $token = app('auth.password.broker')->createToken($user);
                 $password_reset = new PasswordReset();
                 $password_reset->phone = \request('phone');
                 $password_reset->email = \request('phone');
-                $password_reset->token = $token;
+                $password_reset->token = Str::random(60);
                 $password_reset->created_at = Carbon::now(+2);
                 $password_reset->save();
 
                 //return response()->json(['status' => 'success', 'code' => 200, 'data' => ['token' => $token]], 200);
-                return $this->successResponse(['token' => $token]);
+                return $this->successResponse(['token' => $password_reset->token]);
             }
             return $this->failureResponse(403, 'Phone Not Found');
 
@@ -94,14 +97,16 @@ class ForgotPasswordController extends Controller
         }
 
         try {
-            $user = User::where('phone', \request('phone'))->where('status_id', 14)->first();
+            $user = User::query()->where('phone', (new CheckPhone(\request('phone')))->formattedPhone())
+                ->where('status_id', Status::IS_ACTIVE)
+                ->first();
             if (!$user)
             {
                 //return response()->json(['status' => 'error', 'code' => '409', 'message' => 'Phone not found'], 409);
                 return $this->failureResponse(409, 'Phone not found');
             }
 
-            $password_reset_token = PasswordReset::where('token', $token)
+            $password_reset_token = PasswordReset::query()->where('token', $token)
                 ->where('phone', \request('phone'))->orderBy('created_at', 'desc')
                 ->first();
             if(!$password_reset_token || ($password_reset_token->created_at < Carbon::now()->subHours(2))) {

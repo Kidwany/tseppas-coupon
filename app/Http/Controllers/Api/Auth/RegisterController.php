@@ -6,6 +6,7 @@ use App\Helpers\ErrorClass;
 use App\Helpers\RandomString;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Traits\ApiToken;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -15,6 +16,8 @@ use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
+    use ApiToken;
+
     /**
      * Handle the incoming request.
      *
@@ -77,12 +80,13 @@ class RegisterController extends Controller
             $user->email = \request('email');
             $user->phone = substr(\request('phone'), 0, 1) == 2 ? \request('phone') : "2" . \request('phone');
             $user->mobile_token = \request('mobile_token');
-            $user->auth_token = Str::random(300);
+            $user->api_token = $this->generateApiToken();
             $user->image_url = 'image/user.png';
             $user->user_type_id = 1;
             $user->code = '#' . RandomString::generate();
             $user->lang = \request('lang') && in_array(\request('lang'), ['en', 'ar']) ? \request('lang') : 'ar';
             $user->status_id = 14;
+            $user->gender = \request("gender");
             $user->platform = \request('platform');
             $user->save();
 
@@ -102,7 +106,7 @@ class RegisterController extends Controller
             ]);
 
             //$token =  $user->createToken('MyApp')->accessToken;
-            $token =  $user->auth_token;
+            $token =  $user->api_token;
 
             $userInfo = [
                 'id' => $user->id,

@@ -5,10 +5,10 @@ use App\Classes\ErrorClass;
 use App\Http\Controllers\Controller;
 use App\Mail\ResetPasswordEmail;
 use App\Mail\VerifyUser;
+use App\Models\User;
 use App\Models\UserBalance;
 use App\Models\UserToken;
 use App\Models\Verification;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -74,7 +74,7 @@ class ResetPasswordController extends Controller
             ->where('created_at', '>', Carbon::now()->subHours(2))->first();
         if (!empty($check_token))
         {
-            $user = User::where('email', $check_token->email)->update([
+            $user = User::query()->where('email', $check_token->email)->update([
                 'email' => $check_token->email,
                 'password' => bcrypt(\request('password'))
             ]);

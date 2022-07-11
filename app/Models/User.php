@@ -19,9 +19,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $address
  * @property string $name
  * @property string $mobile_token
- * @property string $auth_token
+ * @property string $api_token
  * @property string $password
  * @property string $code
+ * @property int $gender
  * @property string $image_url
  * @property string $lang
  * @property string $platform

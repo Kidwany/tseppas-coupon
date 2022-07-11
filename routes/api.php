@@ -37,3 +37,6 @@ Route::group(['prefix' => 'v1/auth'], function() {
     // Delete User Api
     Route::delete('delete-user/{id}', [DeleteUserController::class, 'delete']);
 });
+
+// Logout
+Route::get('v1/logout', [LoginController::class, 'logout'])->middleware('auth:api');

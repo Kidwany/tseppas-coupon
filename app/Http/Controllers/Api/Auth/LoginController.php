@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Helpers\CheckPhone;
 use App\Helpers\ErrorClass;
 use App\Http\Controllers\Controller;
+use App\Models\Status;
 use App\Models\User;
+use App\Traits\ApiToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
+
+    use ApiToken;
+
     /**
      * Login api
      *
@@ -53,7 +59,10 @@ class LoginController extends Controller
         }
 
         // Revoke all user tokens
-        $check_user = User::where("phone", \request('phone'))->where('status_id', 14)->first();
+        $check_user = User::query()
+            ->where("phone", (new CheckPhone(\request('phone')))->formattedPhone())
+            ->where('status_id', Status::IS_ACTIVE)
+            ->first();
         if ($check_user)
         {
             $check_user->tokens()->get()->map(function ($token) {
@@ -66,7 +75,7 @@ class LoginController extends Controller
             $user->mobile_token = $request->mobile_token;
             $user->platform = \request('platform');
             $user->save();
-            $token =  $user->createToken('MyApp')->accessToken;
+            $token =  $this->generateApiToken();
 
             $userInfo = [
                 'id' => $user->id,
@@ -156,16 +165,9 @@ class LoginController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
-        return response()->json([
-            'status'    => 200,
-            'message' => 'Logged out'
-        ]);
+        $this->revokeToken();
+        return $this->successResponse("", "Logged out");
     }
 }
