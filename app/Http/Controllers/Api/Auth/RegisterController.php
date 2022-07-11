@@ -110,16 +110,16 @@ class RegisterController extends Controller
             $token =  $user->api_token;
 
             $userInfo = [
-                'id' => $user->id,
-                'name' => $user->name,
-                'code' => $user->code,
-                'email' => $user->email,
-                'gender' => $user->gender,
+                'id'            => $user->id,
+                'name'          => $user->name,
+                'code'          => $user->code,
+                'email'         => $user->email,
+                'gender'        => $user->gender,
                 'date_of_birth' => $user->date_of_birth,
-                'mobile_token' => $user->mobile_token,
-                'image_url' => assetPath($user->image_url),
-                'phone' => $user->phone,
-                'lang' => $user->lang
+                'mobile_token'  => $user->mobile_token,
+                'image_url'     => assetPath($user->image_url),
+                'phone'         => $user->phone,
+                'lang'          => $user->lang
             ];
 
             DB::commit();

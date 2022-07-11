@@ -79,15 +79,16 @@ class LoginController extends Controller
 
             $userInfo = [
                 'id' => $user->id,
-                'user_type_id' => $user->user_type_id,
-                'name' => $user->name,
-                'code' => $user->code,
-                'is_available' => $user->currently_available,
-                'email' => $user->email,
-                'mobile_token' => $user->mobile_token,
-                'image_url' => assetPath($user->image_url),
-                'phone' => $user->phone,
-                'lang'  => $user->lang
+                'user_type_id'  => $user->user_type_id,
+                'name'          => $user->name,
+                'code'          => $user->code,
+                'email'         => $user->email,
+                'mobile_token'  => $user->mobile_token,
+                'image_url'     => assetPath($user->image_url),
+                'phone'         => $user->phone,
+                'gender'        => $user->gender,
+                'date_of_birth' => $user->date_of_birth,
+                'lang'          => $user->lang
             ];
 
             try{
