@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->integer('user_type_id')->nullable();
             $table->integer('role_id')->nullable();
             $table->string('code')->nullable();
-            $table->tinyInteger('gender')->nullable();
+            $table->string('gender', 20)->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->text('api_token')->nullable();

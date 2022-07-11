@@ -87,6 +87,7 @@ class RegisterController extends Controller
             $user->lang = \request('lang') && in_array(\request('lang'), ['en', 'ar']) ? \request('lang') : 'ar';
             $user->status_id = 14;
             $user->gender = \request("gender");
+            $user->date_of_birth = \request("date_of_birth");
             $user->platform = \request('platform');
             $user->save();
 
@@ -113,6 +114,8 @@ class RegisterController extends Controller
                 'name' => $user->name,
                 'code' => $user->code,
                 'email' => $user->email,
+                'gender' => $user->gender,
+                'date_of_birth' => $user->date_of_birth,
                 'mobile_token' => $user->mobile_token,
                 'image_url' => assetPath($user->image_url),
                 'phone' => $user->phone,
