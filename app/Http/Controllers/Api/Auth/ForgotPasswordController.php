@@ -32,13 +32,14 @@ class ForgotPasswordController extends Controller
             $validator = Validator::make($request->all(), [
                 'phone' => 'required|max:20',
             ]);
-            if ($validator->fails()) {
-                return response()->json(['error'=>$validator->errors()], 422);
+            if (empty(\request('phone')) || strlen(\request('phone')) < 8 ||  strlen(\request('phone')) > 15) {
+                return $this->failureResponse(422, "Invalid phone Number");
             }
 
             $user = User::query()
                 ->where('phone', (new CheckPhone(\request('phone')))->formattedPhone())
                 ->first();
+
             if(!empty($user))
             {
                 $password_reset = new PasswordReset();
@@ -121,7 +122,7 @@ class ForgotPasswordController extends Controller
                 DB::table('password_resets')->where('phone', \request('phone'))->delete();
                 return $this->successResponse();
             }
-            return response()->json(['status' => 'error', 'code' => 408, 'message' => 'Failed on updating password'], 408);
+            return $this->failureResponse(408, 'Failed on updating password');
         }
         catch (\Exception $exception) {
             DB::rollBack();

@@ -1,20 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Api\Auth;
-use App\Classes\ErrorClass;
+use App\Helpers\ErrorClass;
 use App\Http\Controllers\Controller;
-use App\Mail\ResetPasswordEmail;
-use App\Mail\VerifyUser;
 use App\Models\User;
-use App\Models\UserBalance;
-use App\Models\UserToken;
-use App\Models\Verification;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 /**
  * Class DeleteUserController
@@ -48,7 +38,7 @@ class DeleteUserController extends Controller
         }
         catch (\Exception $exception) {
             DB::rollBack();
-            $e = new \App\Helpers\ErrorClass();
+            $e = new ErrorClass();
             $e->Error_Save(__CLASS__, __FUNCTION__,
                 $exception->getMessage() . '       line -> ' . $exception->getLine(), 0);
             return $this->failureResponse(500, 'Error on Saving Data');
