@@ -3,27 +3,36 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\AdminLoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\BranchesController;
+use App\Http\Controllers\Dashboard\CouponController;
+use App\Http\Controllers\Dashboard\CustomerController;
+use App\Http\Controllers\Dashboard\SalesOrderController;
+use App\Http\Controllers\Dashboard\SalesQuotationController;
 
-Route::group(['namespace' => 'Dashboard', 'prefix' => 'main-dashboard', 'middleware' => 'auth'], function ()
+Route::group(['namespace' => 'App\Http\Controllers\Dashboard', 'prefix' => 'main-dashboard', 'middleware' => 'auth'], function ()
 {
 
     Route::get('/', [DashboardController::class, 'index']);
 
+    Route::resource('sales-quotations', 'SalesQuotationController');
+
+    Route::resource('sales-orders', 'SalesOrderController');
+
+    Route::resource('sales-orders', 'CustomerController');
+
+    Route::resource('sales-orders', 'CouponController');
+
+    Route::resource('sales-orders', 'BranchesController');
+
     /* Users Controller*/
     Route::resource('user', 'UserController');
     Route::get('user/{id}/disable', 'UserController@disable');
-    Route::get('user/{id}/location', 'UserController@getLocation');
 
     /* Admin Controller*/
     Route::resource('admin', 'AdminController');
 
-    /* Notification Controller*/
-    Route::resource('notification', 'NotificationController');
-
     /* Category Controller*/
     Route::resource('category', 'CategoryController');
-
-    Route::get('register-requests', 'RegisterRequestsController@index');
 
     /* Admin Controller*/
     Route::resource('admin', 'AdminController');
@@ -40,11 +49,11 @@ Route::group(['namespace' => 'Dashboard', 'prefix' => 'main-dashboard', 'middlew
     Route::get('about/edit', 'AboutController@edit');
     Route::patch('about/update', 'AboutController@update');
 
-    Route::get('logout', 'AdminLoginController@logout');
+    Route::get('logout', [AdminLoginController::class, 'logout']);
 
 });
 
 Route::get('login', [AdminLoginController::class, 'getLoginForm'])->name('login');
-Route::get('logout', 'Dashboard\AdminLoginController@logout');
+Route::get('logout', [AdminLoginController::class, 'logout']);
 
 Route::post('admin-login', [AdminLoginController::class, 'authenticate']);

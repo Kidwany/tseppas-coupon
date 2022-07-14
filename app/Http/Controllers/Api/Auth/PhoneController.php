@@ -43,15 +43,15 @@ class PhoneController extends Controller
     {
         if (empty($request->phone))
         {
-            return response()->json(['status' => "error", "code" => 402, 'message' => 'Phone Is Required'], 402);
+            return $this->failureResponse(402, "Phone Is Required");
         }
 
         $checkPhone = new CheckPhone($request->phone);
         if ($checkPhone->checkPhoneExistence() == 0)
         {
-            return response()->json(['status' => "error", "code" => 403, 'message' => 'Phone has been taken'], 403);
+            return $this->failureResponse(403, "Phone has been taken");
         }
 
-        return response()->json(['status' => "success", "code" => 200, 'message' => 'Phone is Available to use'], 200);
+        return $this->successResponse();
     }
 }

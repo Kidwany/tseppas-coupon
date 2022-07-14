@@ -10,8 +10,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title> {{config('app.name')}} -  @yield('title')</title>
-    @livewireStyles
-    @livewireScripts
     <script src="{{assetPath('dashboard/assets/js/alpinejs.js')}}" defer></script>
 
     <link rel="stylesheet" href="{{assetPath('dashboard/assets/plugins/bootstrap/css/bootstrap.min.css')}}">
@@ -99,6 +97,7 @@
 <script src="{{assetPath('dashboard/assets/js/pages/ui/notifications.js')}}"></script> <!-- Custom Js -->
 <script src="{{assetPath('dashboard/assets/js/pages/index.js')}}"></script>
 <script src="{{assetPath('dashboard/assets/js/pages/forms/basic-form-elements.js')}}"></script>
+<script src="{{assetPath('dashboard/assets/js/pages/forms/advanced-form-elements.js')}}"></script>
 
 @yield('customizedScript')
 {{--<script src="{{assetPath('vendor/livewire/livewire.js')}}"></script>--}}

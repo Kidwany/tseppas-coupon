@@ -40,56 +40,49 @@
         <div class="authentication">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-sm-12">
-                        <form class="card auth_form" action="{{url('admin-login')}}" method="post">
-                            @csrf
-                            <div class="header">
-                                <img class="logo" src="{{config('app.logo')}}" alt="" style="height: auto; width: 80%">
-                                <h5> Sign in </h5>
-                            </div>
-                            <div class="body">
-                                @include('dashboard.layouts.messages')
+                    <form class="card auth_form" action="{{url('admin-login')}}" method="post" style="width: 40%; margin: auto">
+                        @csrf
+                        <div class="header">
+                            <img class="logo" src="{{config('app.logo')}}" alt="" style="height: auto; width: 40%">
+                            <h5> Sign in </h5>
+                        </div>
+                        <div class="body">
+                            @include('dashboard.layouts.messages')
 
-                                <div class="input-group mb-3">
-                                    <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
-                                    </div>
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                            <div class="input-group mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
+                                </div>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
-                                </div>
-                                <div class="input-group mb-3">
-                                    <input type="password" class="form-control" placeholder="Enter your password" name="password">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
-                                    </div>
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="checkbox">
-                                    <input id="remember_me" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
-                                    <label for="remember_me"> Remember me</label>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"> Sign in</button>
+                                @enderror
                             </div>
-                        </form>
+                            <div class="input-group mb-3">
+                                <input type="password" class="form-control" placeholder="Enter your password" name="password">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
+                                </div>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="checkbox">
+                                <input id="remember_me" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
+                                <label for="remember_me"> Remember me</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"> Sign in</button>
+                        </div>
                         <div class="copyright text-center">
                             &copy;
                             <script>document.write(new Date().getFullYear())</script>,
                             <span>All rights reserved <a href="#" target="_blank">{{config('app.name')}}</a></span>
                         </div>
-                    </div>
-                    <div class="col-lg-8 col-sm-12">
-                        <div class="card">
-                            <img src="{{assetPath('dashboard/assets/images/signin.svg')}}" alt="Sign In"/>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

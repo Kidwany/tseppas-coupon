@@ -6,75 +6,15 @@
                 class="zmdi zmdi-arrow-right"></i></button>--}}
         <li><a href="#search" class="main_search" title="Search..."><i class="zmdi zmdi-search"></i></a></li>
         {{--<li><a href="{{adminUrl('message')}}" class="app_calendar" title="Messages"><i class="zmdi zmdi-comment-alert"></i></a></li>--}}
-        @if(isAdmin())
-            <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle" title="App" data-toggle="dropdown" role="button"><i class="zmdi zmdi-apps"></i></a>
-                <ul class="dropdown-menu slideUp2">
-                    <li class="header">Quick Links</li>
-                    <li class="body">
-                        <ul class="menu app_sortcut list-unstyled">
-                            <li>
-                                <a href="{{adminUrl('slider')}}">
-                                    <div class="icon-circle mb-2 bg-blue"><i class="zmdi zmdi-slideshow"></i></div>
-                                    <p class="mb-0">Slider</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{adminUrl('blog')}}">
-                                    <div class="icon-circle mb-2 bg-blue"><i class="zmdi zmdi-edit"></i></div>
-                                    <p class="mb-0">Blog</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{adminUrl('gallery')}}">
-                                    <div class="icon-circle mb-2 bg-green"><i class="zmdi zmdi-image"></i></div>
-                                    <p class="mb-0">Gallery</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{adminUrl('subscribers')}}">
-                                    <div class="icon-circle mb-2 bg-green"><i class="zmdi zmdi-email-open"></i></div>
-                                    <p class="mb-0">Newsletter</p>
-                                </a>
-                            </li>
-                            {{--<li>
-                                <a href="{{adminUrl('gallery')}}">
-                                    <div class="icon-circle mb-2 bg-green"><i class="zmdi zmdi-image"></i></div>
-                                    <p class="mb-0">Gallery</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{adminUrl('about/edit')}}">
-                                    <div class="icon-circle mb-2 bg-purple"><i class="zmdi zmdi-comment"></i></div>
-                                    <p class="mb-0">About Us</p>
-                                </a>
-                            </li>--}}
-                            {{--<li>
-                                <a href="javascript:void(0);">
-                                    <div class="icon-circle mb-2 bg-red"><i class="zmdi zmdi-tag"></i></div>
-                                    <p class="mb-0">News</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <div class="icon-circle mb-2 bg-grey"><i class="zmdi zmdi-map"></i></div>
-                                    <p class="mb-0">Maps</p>
-                                </a>
-                            </li>--}}
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="{{adminUrl('message')}}" class="dropdown-toggle" title="Messages"><i class="zmdi zmdi-comment-alert"></i>
-                    <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
-                </a>
-            </li>
-            <li><a href="{{adminUrl('contact/edit')}}" class="app_google_drive" title="Contact Info"><i class="zmdi zmdi-phone"></i></a></li>
-            <li><a href="{{adminUrl('setting/1/edit')}}" class="" title="Setting"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a></li>
-            <li><a href="{{adminUrl('setting/1/edit')}}" class="" title="Admins"><i class="zmdi zmdi-key"></i></a></li>
-            <li><a href="{{adminUrl('page')}}" class="" title="Web Pages"><i class="zmdi zmdi-view-web"></i></a></li>
-        @endif
+
+        <li class="dropdown">
+            <a href="{{adminUrl('message')}}" class="dropdown-toggle" title="Messages"><i class="zmdi zmdi-comment-alert"></i>
+                <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
+            </a>
+        </li>
+        <li><a href="{{adminUrl('contact/edit')}}" class="app_google_drive" title="Contact Info"><i class="zmdi zmdi-phone"></i></a></li>
+        <li><a href="{{adminUrl('setting/1/edit')}}" class="" title="Setting"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a></li>
+        <li><a href="{{adminUrl('setting/1/edit')}}" class="" title="Admins"><i class="zmdi zmdi-key"></i></a></li>
         <li><a href="{{adminUrl('logout')}}" class="mega-menu" title="Sign out"><i class="zmdi zmdi-power"></i></a></li>
     </ul>
 </div>
