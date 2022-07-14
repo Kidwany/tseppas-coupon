@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Permissions\Permission;
+use App\Models\Permissions\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 
 /**
  * @property int $id
@@ -32,7 +35,21 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, \App\Traits\Permission;
+
+
+    /**
+     *
+     */
+    public const IS_USER = 1;
+    /**
+     *
+     */
+    public const IS_ADMIN = 2;
+    /**
+     *
+     */
+    public const IS_PARTNER = 5;
 
     /**
      * The attributes that are mass assignable.
@@ -67,4 +84,20 @@ class User extends Authenticatable
     protected $dates = [
         "created_at", "updated_at", "deleted_at"
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class, "role_id")->withDefault();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, "user_has_permissions", "user_id", "permission_id");
+    }
 }

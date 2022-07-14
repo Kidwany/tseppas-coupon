@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Artisan;
 
-class CreateUsersTypesTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +13,13 @@ class CreateUsersTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_types', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string("type");
+            $table->string("name");
+            $table->string("guard_name")->nullable();
+            $table->string("redirect_url")->nullable();
             $table->timestamps();
         });
-
-        Artisan::call('db:seed', [
-            '--class' => 'UserTypeSeeder',
-        ]);
     }
 
     /**
@@ -32,6 +29,6 @@ class CreateUsersTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_types');
+        Schema::dropIfExists('roles');
     }
 }

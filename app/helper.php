@@ -101,7 +101,7 @@ if (!function_exists('adminUrl'))
 {
     function adminUrl($url = null)
     {
-        return  url('/hareef-admin/' . $url);
+        return  url('/main-dashboard/' . $url);
     }
 }
 

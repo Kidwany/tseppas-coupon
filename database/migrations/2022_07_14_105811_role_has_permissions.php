@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Artisan;
 
-class CreateUsersTypesTable extends Migration
+class RoleHasPermissions extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +13,12 @@ class CreateUsersTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_types', function (Blueprint $table) {
+        Schema::create('role_has_permissions', function (Blueprint $table) {
             $table->id();
-            $table->string("type");
+            $table->integer("permission_id");
+            $table->integer("role_id");
             $table->timestamps();
         });
-
-        Artisan::call('db:seed', [
-            '--class' => 'UserTypeSeeder',
-        ]);
     }
 
     /**
@@ -32,6 +28,6 @@ class CreateUsersTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_types');
+        Schema::dropIfExists('role_has_permissions');
     }
 }
