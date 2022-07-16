@@ -20,7 +20,7 @@ class SalesQuotationController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.sales_quotation.create');
     }
 
     /**

@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.layouts')
-@section('title', 'Slider')
+@section('title', 'Sales Quotations')
 @section('customizedStyle')
 @endsection
 
