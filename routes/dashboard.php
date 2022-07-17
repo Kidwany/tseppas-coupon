@@ -18,11 +18,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Dashboard', 'prefix' => 'main
 
     Route::resource('sales-orders', 'SalesOrderController');
 
-    Route::resource('sales-orders', 'CustomerController');
+    Route::resource('customers', 'CustomerController');
 
-    Route::resource('sales-orders', 'CouponController');
+    Route::resource('coupons', 'CouponController');
 
-    Route::resource('sales-orders', 'BranchesController');
+    Route::resource('branches', 'BranchesController');
 
     /* Users Controller*/
     Route::resource('user', 'UserController');
