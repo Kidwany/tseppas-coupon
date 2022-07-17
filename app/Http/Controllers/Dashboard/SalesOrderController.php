@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 
 class SalesOrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return view("dashboard.sales_order.index");
     }
 
     /**
@@ -38,15 +34,10 @@ class SalesOrderController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        return view("dashboard.sales_order.show");
     }
 
     /**

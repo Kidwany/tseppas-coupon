@@ -27,7 +27,7 @@
                 <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-filter-list"></i><span>Sales Orders </span></a>
                 <ul class="ml-menu">
                     <li><a href="{{adminUrl('sales-orders')}}">Show Sales Orders</a></li>
-                    <li><a href="{{adminUrl('sales-orders/create')}}">New Order</a></li>
+<!--                    <li><a href="{{adminUrl('sales-orders/create')}}">New Order</a></li>-->
                 </ul>
             </li>
             <li class="{{request()->segment(2) == 'customers' ? 'active open' : ''}}">
