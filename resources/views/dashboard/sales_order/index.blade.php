@@ -88,7 +88,7 @@
                                         <td>Mohamed Zidan</td>
                                         <td>
                                             <a href="#" class="btn btn-primary btn-sm"><i class="zmdi zmdi-edit"></i></a>
-                                            <a href="{{adminUrl('sales-orders/1/show')}}" class="btn btn-info btn-sm"><i class="zmdi zmdi-eye"></i></a>
+                                            <a href="{{adminUrl('sales-orders/1')}}" class="btn btn-info btn-sm"><i class="zmdi zmdi-eye"></i></a>
 <!--                                            <a href="#" class="btn bg-red waves-effect btn-sm" data-toggle="modal" data-target="#delete1" data-color="red"><i class="zmdi zmdi-delete"></i> </a>-->
                                         </td>
                                     </tr>
