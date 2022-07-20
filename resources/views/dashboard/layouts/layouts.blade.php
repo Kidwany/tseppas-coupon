@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{assetPath('dashboard/assets/plugins/charts-c3/plugin.css')}}"/>
     <link rel="stylesheet" href="{{assetPath('dashboard/assets/plugins/fullcalendar/fullcalendar.min.css')}}">
     <link rel="stylesheet" href="{{assetPath('dashboard/assets/plugins/morrisjs/morris.min.css')}}" />
+    <link rel="stylesheet" href="{{assetPath('dashboard/assets/plugins/dropify/css/dropify.min.css')}}">
     <link rel="stylesheet" href="{{assetPath('dashboard/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{assetPath('dashboard/assets/plugins/select2/select2.css')}}">
     <link rel="stylesheet" href="{{assetPath('dashboard/assets/plugins/sweetalert/sweetalert.css')}}"/>
@@ -83,6 +84,7 @@
 <script src="{{assetPath('dashboard/assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
 
 <script src="{{assetPath('dashboard/assets/plugins/select2/select2.min.js')}}"></script>
+<script src="{{assetPath('dashboard/assets/plugins/dropify/js/dropify.min.js')}}"></script>
 <script src="{{assetPath('dashboard/assets/plugins/momentjs/moment.js')}}"></script> <!-- Moment Plugin Js -->
 <script src="{{assetPath('dashboard/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script>
 <script src="{{assetPath('dashboard/assets/bundles/mainscripts.bundle.js')}}"></script>
@@ -94,6 +96,7 @@
 <script src="{{assetPath('dashboard/assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{assetPath("dashboard/assets/plugins/light-gallery/js/lightgallery-all.min.js")}}"></script>
 <script src="{{assetPath('dashboard/assets/plugins/bootstrap-notify/bootstrap-notify.js')}}"></script>
+<script src="{{assetPath("dashboard/assets/js/pages/forms/dropify.js")}}"></script>
 <script src="{{assetPath('dashboard/assets/js/pages/ui/notifications.js')}}"></script> <!-- Custom Js -->
 <script src="{{assetPath('dashboard/assets/js/pages/index.js')}}"></script>
 <script src="{{assetPath('dashboard/assets/js/pages/forms/basic-form-elements.js')}}"></script>

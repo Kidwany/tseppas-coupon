@@ -37,11 +37,18 @@
                     <li><a href="{{adminUrl('customers/create')}}">New Customer</a></li>
                 </ul>
             </li>
+            <li class="{{request()->segment(2) == 'clients' ? 'active open' : ''}}">
+                <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-case"></i><span>Clients </span></a>
+                <ul class="ml-menu">
+                    <li><a href="{{adminUrl('clients')}}">Clients</a></li>
+                    <li><a href="{{adminUrl('clients/create')}}">New Client</a></li>
+                </ul>
+            </li>
             <li class="{{request()->segment(2) == 'coupons' ? 'active open' : ''}}">
                 <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-book"></i><span>Coupons</span></a>
                 <ul class="ml-menu">
-                    <li><a href="{{adminUrl('coupons')}}">Show Coupons</a></li>
-                    <li><a href="{{adminUrl('coupons/create')}}"> New Coupon </a></li>
+                    <li><a href="{{adminUrl('coupons')}}">All Coupons</a></li>
+                    <li><a href="{{adminUrl('coupons/create')}}"> Generate Coupons </a></li>
                 </ul>
             </li>
             <li class="{{request()->segment(2) == 'sales-agents' ? 'active open' : ''}}">
