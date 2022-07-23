@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->integer('user_type_id')->nullable();
             $table->integer('role_id')->nullable();
+            $table->integer('customer_id')->nullable();
             $table->string('code')->nullable();
             $table->string('gender', 20)->nullable();
             $table->date('date_of_birth')->nullable();
