@@ -1,8 +1,10 @@
 <?php
 
+use Database\Seeders\StatusSeeder;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Artisan;
 
 class CreateTableStatus extends Migration
 {
@@ -20,6 +22,10 @@ class CreateTableStatus extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Artisan::call('db:seed', [
+            '--class' => 'StatusSeeder',
+        ]);
     }
 
     /**

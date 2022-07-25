@@ -1,16 +1,18 @@
 <?php
 
 
-namespace App\Repository;
+namespace App\Repository\Coupon;
 
+use App\Models\Coupon\Coupons;
 use App\Models\User;
+use App\Repository\BaseRepository;
 use Illuminate\Support\Facades\DB;
 
 /**
  * Class StarRepository
  * @package App\Repository
  */
-class UserRepository extends BaseRepository
+class CouponRepository extends BaseRepository
 {
     /**
      * @var User
@@ -21,7 +23,7 @@ class UserRepository extends BaseRepository
      * StarRepository constructor.
      * @param $model
      */
-    public function __construct(User $model)
+    public function __construct(Coupons $model)
     {
         parent::__construct($model);
         $this->model = $model;

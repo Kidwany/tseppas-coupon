@@ -3,10 +3,25 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon\CouponCategories;
+use App\Repository\Coupon\CouponCategoryRepository;
+use App\Repository\Coupon\CouponRepository;
+use App\Repository\Customer\CustomerRepository;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
+
+    public $customersRepository, $couponRepository, $couponCategoryRepository;
+
+    public function __construct(CustomerRepository $customerRepository,
+                                CouponRepository $couponRepository,
+                                CouponCategoryRepository $couponCategoryRepository)
+    {
+        $this->couponRepository         = $couponRepository;
+        $this->customersRepository      = $customerRepository;
+        $this->couponCategoryRepository = $couponCategoryRepository;
+    }
 
     public function index()
     {
@@ -15,7 +30,9 @@ class CouponController extends Controller
 
     public function create()
     {
-        return view("dashboard.coupons.create");
+        $customers  = $this->customersRepository->all(["id", "name", "code"]);
+        $couponCategories = $this->couponCategoryRepository->all(["id", "code", "title", "amount"]);
+        return view("dashboard.coupons.create", compact("customers", 'couponCategories'));
     }
 
     /**
