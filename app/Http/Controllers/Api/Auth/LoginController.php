@@ -61,7 +61,7 @@ class LoginController extends Controller
         // Revoke all user tokens
         $check_user = User::query()
             ->where("phone", (new CheckPhone(\request('phone')))->formattedPhone())
-            ->where('status_id', Status::IS_ACTIVE)
+            //->where('status_id', Status::IS_ACTIVE)
             ->first();
         if ($check_user)
         {
