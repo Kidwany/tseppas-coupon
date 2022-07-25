@@ -36,7 +36,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, \App\Traits\Permission, LogsActivity;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, \App\Traits\Permission;
 
 
     /**
